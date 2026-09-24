@@ -1,0 +1,247 @@
+# Favn360 Source Available License v1.0
+
+Copyright © 2026 Funktion360. All rights reserved.
+
+This Favn360 Source Available License ("License") governs the use, copying, modification, distribution, and other use of the software known as **Favn360**, including its source code, documentation, assets, database structures, interfaces, and associated materials (collectively, the "Software").
+
+By accessing, copying, modifying, distributing, running, deploying, or otherwise using the Software, you agree to the terms of this License.
+
+## 1. Ownership
+
+The Software is proprietary software made source-available by Funktion360.
+
+All intellectual property rights in the Software remain with Funktion360 and/or the respective copyright holders.
+
+Except for the limited rights expressly granted under this License, no rights are transferred to you.
+
+This License does not transfer ownership of the Software or any associated intellectual property.
+
+## 2. Permitted Non-Commercial Use
+
+Subject to the terms of this License, Funktion360 grants individuals a limited, worldwide, non-exclusive, non-transferable, revocable, royalty-free license to:
+
+- access and inspect the source code;
+- run the Software for personal, private, and non-commercial purposes;
+- modify the Software for personal, private, and non-commercial purposes;
+- create private copies for development, testing, experimentation, and learning;
+- use the Software as part of personal educational activities or individual study.
+
+These rights apply only where the Software is not being used directly or indirectly for a Commercial or Organisational Purpose as defined below.
+
+## 3. Commercial and Organisational Use Prohibited
+
+Unless Funktion360 has granted you a separate written commercial licence, you may not use the Software for any Commercial or Organisational Purpose.
+
+For the purposes of this License, "Commercial or Organisational Purpose" includes use by, for, on behalf of, or for the benefit of:
+
+- companies and other commercial enterprises;
+- sole proprietorships and self-employed professionals;
+- partnerships;
+- employers;
+- municipalities;
+- regions;
+- governmental authorities;
+- public institutions;
+- foundations;
+- associations;
+- non-profit organisations;
+- NGOs;
+- educational institutions, except where expressly permitted under Section 4;
+- healthcare or social service providers;
+- consulting businesses;
+- professional practices;
+- organisations or institutions of any other kind.
+
+The prohibition applies regardless of whether the organisation makes a profit from the Software.
+
+## 4. Education and Research
+
+Individual students may use the Software for personal study, coursework, experimentation, and non-commercial educational projects.
+
+Individual teachers and researchers may inspect the source code and use reasonable portions of the Software for personal, non-commercial teaching preparation or research.
+
+Deployment or operation of Favn360 by a school, university, research institution, training provider, or other educational organisation requires separate written permission from Funktion360 unless Funktion360 expressly states otherwise.
+
+Use in externally funded research, commercial research, consultancy, commissioned projects, or projects carried out on behalf of an organisation is not automatically covered by the educational permission in this Section.
+
+## 5. No Production Use by Organisations
+
+An organisation may not use the Software in a production environment without a separate written licence from Funktion360.
+
+This includes, without limitation:
+
+- internal business systems;
+- employee tools;
+- case management;
+- customer or citizen services;
+- administrative systems;
+- professional workflows;
+- internal testing intended for future organisational deployment;
+- pilot projects;
+- proof-of-concept deployments for an organisation;
+- demonstrations performed as part of a commercial service;
+- public-facing services.
+
+The fact that the Software is freely accessible through a public source-code repository does not grant a right to use it for these purposes.
+
+## 6. Hosting and Software as a Service
+
+You may not, without separate written permission from Funktion360:
+
+- host the Software for third parties;
+- provide access to the Software as Software as a Service ("SaaS");
+- operate a managed Favn360 service;
+- offer hosting, installation, administration, maintenance, or support of the Software as a paid service;
+- include the Software in another hosted commercial product or service;
+- charge users for access to the Software or a derivative of it.
+
+This restriction applies whether the Software is provided in its original form or in a modified form.
+
+## 7. Sale and Commercial Distribution
+
+You may not sell, rent, lease, sublicense, monetise, commercially distribute, or otherwise commercially exploit the Software or a substantial part of it without separate written permission from Funktion360.
+
+You may not incorporate the Software into a commercial product, platform, service, or offering without a separate commercial licence.
+
+## 8. Modifications and Derivative Works
+
+You may modify the Software where permitted by this License.
+
+Any modification, fork, adaptation, translation, derivative work, or substantially similar version based on the Software remains subject to the restrictions of this License to the extent that it contains or is derived from copyrighted material from Favn360.
+
+Modification of the Software does not remove the requirements of this License.
+
+You may not use a fork, modification, wrapper, integration, reimplementation, or derivative work for the purpose of circumventing the commercial or organisational restrictions contained in this License.
+
+## 9. Distribution
+
+You may redistribute the unmodified Software for non-commercial purposes only if:
+
+1. this License is included in its entirety;
+2. all copyright notices are retained;
+3. the Software is clearly identified as Favn360;
+4. you do not imply endorsement by or affiliation with Funktion360;
+5. you do not charge for the Software; and
+6. the distribution is otherwise permitted under this License.
+
+Distribution of modified versions is not permitted without separate written permission from Funktion360, unless Funktion360 expressly permits such distribution for a particular repository or contribution.
+
+## 10. Source Code Availability Does Not Mean Open Source
+
+The Software is made available in source-code form for transparency, learning, evaluation, personal experimentation, and community engagement.
+
+The Software is **source-available software**.
+
+It is not licensed under an Open Source Initiative approved open-source licence, and the availability of the source code does not waive any copyright or other intellectual property rights.
+
+## 11. Artificial Intelligence and Machine Learning
+
+Unless separately authorised in writing by Funktion360, you may not use substantial portions of the Software or its source code:
+
+- as a dedicated dataset for training a commercial artificial intelligence or machine-learning model;
+- to fine-tune a commercial model;
+- to create a dataset intended to reproduce, imitate, or reconstruct Favn360;
+- to develop a competing commercial product through automated extraction or analysis of the Software.
+
+This Section does not prohibit ordinary use of general-purpose development tools or AI-assisted programming tools when working on the Software for purposes otherwise permitted by this License.
+
+## 12. Circumvention
+
+You may not use technical, contractual, organisational, or other arrangements primarily intended to circumvent the restrictions of this License.
+
+For example, an organisation may not instruct an employee, contractor, consultant, member, student, volunteer, or other individual to operate Favn360 under the personal-use provisions of this License for the organisation's benefit.
+
+## 13. Trademarks and Branding
+
+This License does not grant permission to use the names:
+
+**Favn360**
+
+or
+
+**Funktion360**
+
+or associated logos, trademarks, visual identities, domain names, or branding except as reasonably necessary to identify the original Software and copyright holder.
+
+Modified versions must not be presented as official versions of Favn360 without written permission from Funktion360.
+
+## 14. Contributions
+
+Unless otherwise agreed in writing, contributions submitted to an official Favn360 repository may be subject to additional contribution terms or a Contributor License Agreement ("CLA").
+
+Funktion360 may require acceptance of a CLA before accepting a contribution.
+
+Submission of a contribution does not automatically grant the contributor rights to use Favn360 commercially.
+
+## 15. Commercial Licensing
+
+Commercial, governmental, institutional, organisational, SaaS, hosting, integration, OEM, and other uses not permitted by this License may be available under a separate commercial licence from Funktion360.
+
+A commercial licence may grant additional rights, including rights relating to:
+
+- production deployment;
+- organisational use;
+- commercial use;
+- hosting;
+- integrations;
+- modification;
+- redistribution;
+- support;
+- maintenance;
+- enterprise functionality.
+
+Permission under a commercial licence exists only when granted separately by Funktion360.
+
+## 16. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, RELIABILITY, SECURITY, OR NON-INFRINGEMENT.
+
+YOU USE THE SOFTWARE AT YOUR OWN RISK.
+
+## 17. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, FUNKTION360 AND THE COPYRIGHT HOLDERS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR OTHER DAMAGES ARISING FROM OR RELATING TO THE SOFTWARE OR ITS USE.
+
+Nothing in this License excludes or limits liability where such exclusion or limitation is prohibited by applicable law.
+
+## 18. Termination
+
+Your rights under this License terminate automatically if you materially breach its terms.
+
+Upon termination, you must cease all use of the Software that was authorised solely by this License and, where legally permissible, delete copies in your possession or control.
+
+Termination does not affect rights or remedies that arose before termination.
+
+Funktion360 may grant a new licence or written permission following a breach at its sole discretion.
+
+## 19. Separate Agreements
+
+A separate written agreement between you and Funktion360 may modify or replace the terms of this License for the parties to that agreement.
+
+Where a valid commercial or enterprise licence applies, that agreement takes precedence over this License to the extent of any conflict.
+
+## 20. Governing Law
+
+This License is governed by the laws of Denmark, excluding its conflict-of-law rules.
+
+Any dispute arising out of or relating to this License shall be subject to the jurisdiction of the competent Danish courts, unless mandatory law requires otherwise.
+
+## 21. Severability
+
+If any provision of this License is found invalid or unenforceable, the remaining provisions remain in effect to the maximum extent permitted by law.
+
+An invalid or unenforceable provision shall, where possible, be interpreted or adjusted to achieve its intended purpose as closely as permitted by applicable law.
+
+## 22. No Waiver
+
+Failure by Funktion360 to enforce any provision of this License does not constitute a waiver of that provision or any other rights.
+
+## 23. Version
+
+This document is:
+
+**Favn360 Source Available License v1.0**
+
+Copyright © 2026 Funktion360. All rights reserved.
+
+Favn360 is made available under this License only. Commercial and organisational use requires separate permission from Funktion360.

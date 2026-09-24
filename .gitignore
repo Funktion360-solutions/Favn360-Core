@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+dist
+coverage
+tsconfig.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+npm-debug.log*
