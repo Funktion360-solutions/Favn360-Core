@@ -22,7 +22,3 @@ if (process.env.ENABLE_AI_ANALYSIS === "true") {
     throw new Error(`AI analysis is enabled, but configuration is missing: ${missingAi.join(", ")}`);
   }
 }
-
-if (process.env.AUDIT_LOG_NETWORK_METADATA === "true" && !process.env.AUDIT_IP_HASH_KEY?.trim()) {
-  throw new Error("AUDIT_IP_HASH_KEY is required when network audit metadata is enabled.");
-}

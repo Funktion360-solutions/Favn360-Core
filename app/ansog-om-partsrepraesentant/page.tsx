@@ -2,8 +2,20 @@ import Link from "next/link";
 import { PublicHeader } from "@/components/PublicHeader";
 import { PublicFooter } from "@/components/PublicFooter";
 import { ApplicationForm } from "./ApplicationForm";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
 
-export default function RepresentativeApplicationPage() {
+export default async function RepresentativeApplicationPage() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/auth/login?next=/ansog-om-partsrepraesentant");
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <PublicHeader />

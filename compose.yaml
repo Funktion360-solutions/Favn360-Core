@@ -15,15 +15,12 @@ services:
       APP_ORIGIN: ${APP_ORIGIN:?required}
       NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:?required}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:?required}
-      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-}
       DOCUMENT_BUCKET_NAME: ${DOCUMENT_BUCKET_NAME:-favn360-documents}
       DEMO_MODE: ${DEMO_MODE:-false}
       ENABLE_AI_ANALYSIS: ${ENABLE_AI_ANALYSIS:-false}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5-mini}
       OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://eu.api.openai.com/v1}
-      AUDIT_LOG_NETWORK_METADATA: ${AUDIT_LOG_NETWORK_METADATA:-false}
-      AUDIT_IP_HASH_KEY: ${AUDIT_IP_HASH_KEY:-}
     read_only: true
     tmpfs:
       - /tmp:size=64m,mode=1777

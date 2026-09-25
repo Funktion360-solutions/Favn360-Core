@@ -6,36 +6,66 @@ import { Section } from "@/components/Section";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 
-async function approveRepresentative(id: string) {
+async function approveRepresentative(userId: string) {
   "use server";
 
   await requireUser("administrator");
 
   const supabase = await createClient();
 
-  await supabase
-    .from("representative_profiles")
-    .update({
-      approved_by_admin: true
-    })
-    .eq("id", id);
+  const { error } = await supabase.rpc(
+    "admin_set_representative_state",
+    {
+      p_user_id: userId,
+      p_approved: true,
+      p_verified: null,
+      p_suspended: null,
+      p_public_profile: null,
+      p_accepts_new_clients: null,
+      p_promote_to_representative: false
+    }
+  );
+
+  if (error) {
+    console.error("[favn360] Failed to approve representative.", {
+      code: error.code,
+      message: error.message
+    });
+
+    return;
+  }
 
   revalidatePath("/dashboard/admin/partsrepraesentanter");
 }
 
-async function revokeRepresentative(id: string) {
+async function revokeRepresentative(userId: string) {
   "use server";
 
   await requireUser("administrator");
 
   const supabase = await createClient();
 
-  await supabase
-    .from("representative_profiles")
-    .update({
-      approved_by_admin: false
-    })
-    .eq("id", id);
+  const { error } = await supabase.rpc(
+    "admin_set_representative_state",
+    {
+      p_user_id: userId,
+      p_approved: false,
+      p_verified: null,
+      p_suspended: null,
+      p_public_profile: false,
+      p_accepts_new_clients: false,
+      p_promote_to_representative: false
+    }
+  );
+
+  if (error) {
+    console.error("[favn360] Failed to revoke representative.", {
+      code: error.code,
+      message: error.message
+    });
+
+    return;
+  }
 
   revalidatePath("/dashboard/admin/partsrepraesentanter");
 }
@@ -108,7 +138,7 @@ export default async function AdminRepresentativesPage() {
 
                     <div className="flex flex-wrap gap-3">
                       {!rep.approved_by_admin ? (
-                        <form action={approveRepresentative.bind(null, rep.id)}>
+                        <form action={approveRepresentative.bind(null, rep.user_id)}>
                           <button
                             type="submit"
                             className="rounded bg-funktion-blue px-4 py-2 text-sm font-semibold text-white"
@@ -117,7 +147,7 @@ export default async function AdminRepresentativesPage() {
                           </button>
                         </form>
                       ) : (
-                        <form action={revokeRepresentative.bind(null, rep.id)}>
+                        <form action={revokeRepresentative.bind(null, rep.user_id)}>
                           <button
                             type="submit"
                             className="rounded border border-red-300 px-4 py-2 text-sm font-semibold text-red-700"
@@ -142,23 +172,23 @@ export default async function AdminRepresentativesPage() {
 
                     <InfoRow
                       label="Firma"
-                      value={rep.organization_name ?? "Ikke angivet"}
+                      value={rep.company_name ?? "Ikke angivet"}
                     />
 
                     <InfoRow
                       label="CVR"
-                      value={rep.cvr_number ?? "Ikke angivet"}
+                      value={rep.cvr ?? "Ikke angivet"}
                     />
                   </div>
 
-                  {rep.bio ? (
+                  {rep.profile_text ? (
                     <div className="mt-5">
                       <p className="text-xs uppercase tracking-wide text-black/50">
                         Profiltekst
                       </p>
 
                       <p className="mt-2 leading-7 text-black/80">
-                        {rep.bio}
+                        {rep.profile_text}
                       </p>
                     </div>
                   ) : null}

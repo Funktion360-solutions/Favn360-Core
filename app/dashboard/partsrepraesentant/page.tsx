@@ -11,43 +11,17 @@ import { createClient } from "@/lib/supabase/server";
 async function acceptRequest(requestId: string) {
   "use server";
 
-  const user = await requireUser("partsrepraesentant");
+  await requireUser("partsrepraesentant");
   const supabase = await createClient();
 
-  const { data: representative } = await supabase
-    .from("representative_profiles")
-    .select("id")
-    .eq("user_id", user.id)
-    .single();
-
-  if (!representative) return;
-
-  const { data: request } = await supabase
-    .from("representative_requests")
-    .select("id,citizen_id,representative_id,status")
-    .eq("id", requestId)
-    .eq("representative_id", representative.id)
-    .eq("status", "pending")
-    .single();
-
-  if (!request) return;
-
-  await supabase.from("citizen_representative_links").insert({
-    citizen_id: request.citizen_id,
-    representative_id: request.representative_id,
-    status: "active",
-    requested_by: user.id,
-    approved_by: user.id,
-    started_at: new Date().toISOString()
+  const { error } = await supabase.rpc("accept_representative_request", {
+    p_request_id: requestId,
   });
 
-  await supabase
-    .from("representative_requests")
-    .update({
-      status: "accepted",
-      handled_at: new Date().toISOString()
-    })
-    .eq("id", request.id);
+  if (error) {
+    console.error("Failed to accept representative request:", error);
+    return;
+  }
 
   revalidatePath("/dashboard/partsrepraesentant");
 }
@@ -55,29 +29,20 @@ async function acceptRequest(requestId: string) {
 async function rejectRequest(requestId: string) {
   "use server";
 
-  const user = await requireUser("partsrepraesentant");
+  await requireUser("partsrepraesentant");
   const supabase = await createClient();
 
-  const { data: representative } = await supabase
-    .from("representative_profiles")
-    .select("id")
-    .eq("user_id", user.id)
-    .single();
+  const { error } = await supabase.rpc("reject_representative_request", {
+    p_request_id: requestId,
+  });
 
-  if (!representative) return;
-
-  await supabase
-    .from("representative_requests")
-    .update({
-      status: "rejected",
-      handled_at: new Date().toISOString()
-    })
-    .eq("id", requestId)
-    .eq("representative_id", representative.id);
+  if (error) {
+    console.error("Failed to reject representative request:", error);
+    return;
+  }
 
   revalidatePath("/dashboard/partsrepraesentant");
 }
-
 function formatDate(value: string | null | undefined) {
   if (!value) return "Ikke angivet";
 

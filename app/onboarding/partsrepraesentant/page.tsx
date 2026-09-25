@@ -15,12 +15,12 @@ async function hasRepresentativeOnboardingAccess(
   }
 
   const { data: application, error } = await supabase
-    .from("representative_applications")
-    .select("id")
-    .eq("email", user.email.toLowerCase())
-    .eq("status", "approved")
-    .eq("onboarding_unlocked", true)
-    .maybeSingle();
+  .from("representative_applications")
+  .select("id")
+  .eq("applicant_user_id", user.id)
+  .eq("status", "approved")
+  .eq("onboarding_unlocked", true)
+  .maybeSingle();
 
   if (error) {
     console.error(error);
@@ -32,72 +32,55 @@ async function hasRepresentativeOnboardingAccess(
 async function createRepresentativeProfile(formData: FormData) {
   "use server";
 
-  const user = await requireUser();
+  await requireUser();
 
   const supabase = await createClient();
 
-  const hasAccess = await hasRepresentativeOnboardingAccess(user, supabase);
-
-  if (!hasAccess) {
-    return;
-  }
-
-  const display_name = String(formData.get("display_name") ?? "").trim();
+  const displayName = String(formData.get("display_name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
-  const company_name = String(formData.get("company_name") ?? "").trim();
+  const companyName = String(formData.get("company_name") ?? "").trim();
   const cvr = String(formData.get("cvr") ?? "").trim();
   const city = String(formData.get("city") ?? "").trim();
   const area = String(formData.get("area") ?? "").trim();
-  const profile_text = String(formData.get("profile_text") ?? "").trim();
-  const price_text = String(formData.get("price_text") ?? "").trim();
+  const profileText = String(formData.get("profile_text") ?? "").trim();
+  const priceText = String(formData.get("price_text") ?? "").trim();
   const website = String(formData.get("website") ?? "").trim();
 
-  const accepts_new_clients = formData.get("accepts_new_clients") === "on";
-  const public_profile = formData.get("public_profile") === "on";
+  const acceptsNewClients =
+    formData.get("accepts_new_clients") === "on";
 
-  const specialtiesRaw = String(formData.get("specialties") ?? "");
+  const publicProfile =
+    formData.get("public_profile") === "on";
 
-  const specialties = specialtiesRaw
+  const specialties = String(formData.get("specialties") ?? "")
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
 
-  const { error: profileError } = await supabase
-    .from("representative_profiles")
-    .insert({
-      user_id: user.id,
-      display_name,
-      email: user.email,
-      phone,
-      company_name,
-      cvr,
-      city,
-      area,
-      profile_text,
-      specialties,
-      price_text,
-      website,
-      accepts_new_clients,
-      public_profile,
-      approved_by_admin: true,
-      verified: true,
-      suspended: false
+  const { error } = await supabase.rpc(
+    "complete_representative_onboarding",
+    {
+      p_display_name: displayName,
+      p_phone: phone || null,
+      p_company_name: companyName || null,
+      p_cvr: cvr || null,
+      p_city: city || null,
+      p_area: area || null,
+      p_profile_text: profileText || null,
+      p_specialties: specialties,
+      p_price_text: priceText || null,
+      p_website: website || null,
+      p_accepts_new_clients: acceptsNewClients,
+      p_public_profile: publicProfile
+    }
+  );
+
+  if (error) {
+    console.error("[favn360] Representative onboarding failed.", {
+      code: error.code,
+      message: error.message
     });
 
-  if (profileError) {
-    console.error(profileError);
-    return;
-  }
-
-  const { error: roleError } = await supabase
-    .from("profiles")
-    .update({
-      role: "representative"
-    })
-    .eq("id", user.id);
-
-  if (roleError) {
-    console.error(roleError);
     return;
   }
 

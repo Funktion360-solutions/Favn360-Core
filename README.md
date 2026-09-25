@@ -63,11 +63,49 @@ Start med [docs/gdpr/RELEASE-CHECKLIST.md](docs/gdpr/RELEASE-CHECKLIST.md). De v
 5. Gennemfør ekstern penetrationstest og beredskabsøvelse.
 6. Verificér domæne, kontaktoplysninger, privatlivstekst og den faktiske leverandørliste.
 
-## Licens
+## Licensing
 
-Koden er offentligt læsbar, men der gives ikke automatisk en open-source-licens. Se [LICENSE](LICENSE). Vælg og indsæt en OSI-godkendt licens separat, hvis projektet skal være open source.
+Favn360 is **source available, not open source**.
+
+The source code is publicly accessible to support transparency, learning, personal experimentation, evaluation of the technology, and community contributions.
+
+### Personal and educational use
+
+Individuals may use Favn360 for permitted personal, private, non-commercial, and individual educational purposes subject to the terms of the `LICENSE` file.
+
+### Companies and organisations
+
+Use by or for companies, municipalities, regions, governmental authorities, institutions, associations, foundations, NGOs, educational institutions, consultants, or other organisations is **not permitted under the standard licence**.
+
+A separate licence from Funktion360 is required.
+
+This includes organisational:
+
+- testing;
+- pilots;
+- proof-of-concept deployments;
+- internal use;
+- production use;
+- hosting;
+- SaaS;
+- professional services.
+
+### Commercial licensing
+
+Commercial and organisational licensing is available separately from Funktion360.
+
+See `COMMERCIAL-LICENSE.md` for further information.
+
+### Contributions
+
+Contributions to official Favn360 repositories are subject to `CONTRIBUTING.md` and the Favn360 Contributor License Agreement (`CLA.md`).
+
+### Important
+
+Public access to this repository does not grant permission to use Favn360 commercially or organisationally.
+
+Copyright © 2026 Funktion360. All rights reserved.
 
 ## Sikkerhedsfejl
 
 Offentliggør ikke sårbarheder i et issue. Følg [SECURITY.md](SECURITY.md).
-# Favn360-Core

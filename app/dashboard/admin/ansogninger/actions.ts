@@ -30,42 +30,50 @@ async function fetchApplication(supabase: Awaited<ReturnType<typeof createClient
   return data;
 }
 
-async function updateMatchingProfileRole(
+async function updateMatchingRepresentativeProfile(
   supabase: Awaited<ReturnType<typeof createClient>>,
-  email: string
+  email: string,
+  values: {
+    approved?: boolean;
+    verified?: boolean;
+    suspended?: boolean;
+    publicProfile?: boolean;
+    acceptsNewClients?: boolean;
+  }
 ) {
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("id")
+  const { data: profile, error: profileError } = await supabase
+    .from("representative_profiles")
+    .select("user_id")
     .eq("email", email)
     .maybeSingle();
+
+  if (profileError) {
+    console.error(profileError);
+    return;
+  }
 
   if (!profile) {
     return;
   }
 
-  const { error } = await supabase
-    .from("profiles")
-    .update({ role: "representative" })
-    .eq("id", profile.id);
+  const { error } = await supabase.rpc(
+    "admin_set_representative_state",
+    {
+      p_user_id: profile.user_id,
+      p_approved: values.approved ?? null,
+      p_verified: values.verified ?? null,
+      p_suspended: values.suspended ?? null,
+      p_public_profile: values.publicProfile ?? null,
+      p_accepts_new_clients: values.acceptsNewClients ?? null,
+      p_promote_to_representative: false
+    }
+  );
 
   if (error) {
-    console.error(error);
-  }
-}
-
-async function updateMatchingRepresentativeProfiles(
-  supabase: Awaited<ReturnType<typeof createClient>>,
-  email: string,
-  values: Record<string, unknown>
-) {
-  const { error } = await supabase
-    .from("representative_profiles")
-    .update(values)
-    .eq("email", email);
-
-  if (error) {
-    console.error(error);
+    console.error("[favn360] Failed to update representative state.", {
+      code: error.code,
+      message: error.message
+    });
   }
 }
 
@@ -125,7 +133,6 @@ export async function approveApplication(formData: FormData) {
     return;
   }
 
-  await updateMatchingProfileRole(supabase, application.email);
   await logApplicationAction({
     action: "representative_application_approved",
     actorId: admin.id,
@@ -201,11 +208,11 @@ export async function suspendApplication(formData: FormData) {
     return;
   }
 
-  await updateMatchingRepresentativeProfiles(supabase, application.email, {
-    suspended: true,
-    public_profile: false,
-    accepts_new_clients: false
-  });
+  await updateMatchingRepresentativeProfile(supabase, application.email, {
+  suspended: true,
+  publicProfile: false,
+  acceptsNewClients: false
+});
 
   await logApplicationAction({
     action: "representative_application_suspended",
@@ -284,11 +291,11 @@ export async function reactivateApplication(formData: FormData) {
     return;
   }
 
-  await updateMatchingRepresentativeProfiles(supabase, application.email, {
-    suspended: false,
-    approved_by_admin: true,
-    verified: true
-  });
+  await updateMatchingRepresentativeProfile(supabase, application.email, {
+  suspended: false,
+  approved: true,
+  verified: true
+});
 
   await logApplicationAction({
     action: "representative_application_reactivated",
